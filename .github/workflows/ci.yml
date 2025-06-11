@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest  # Sistema operacional (pode usar também windows-latest ou macOS-latest)
     strategy:
       matrix:
-        python-version: ["3.9", "3.10", "3.11"]  # Versões do Python para testar
+        python-version: ["3.10", "3.11"]  # Versões do Python para testar
 
     steps:
       - uses: actions/checkout@v4  # Baixa o código do repositório
