@@ -25,10 +25,10 @@ class HabitControl(ft.Row): # Mantendo ft.Row conforme o arquivo fornecido. Se v
         # Usar current_app_date
         self.streak_text = ft.Text(f"🔥 {self.tracker.get_current_streak(self.habit_name, self.current_app_date)}")
         self.delete_button = ft.IconButton(
-            icon=ft.icons.DELETE_OUTLINE,
+            icon=ft.Icons.DELETE_OUTLINE,
             tooltip="Deletar hábito",
             on_click=self.delete_habit_click,
-            icon_color=ft.colors.with_opacity(0.5, ft.colors.RED_ACCENT_700), # Cor um pouco mais forte
+            icon_color=ft.Colors.with_opacity(0.5, ft.Colors.RED_ACCENT_700), # Cor um pouco mais forte
             icon_size=20
         )
 
@@ -73,18 +73,18 @@ def main(page: ft.Page):
 
     # Botões são definidos antes para que update_date_controls_state possa referenciá-los
     prev_day_button = ft.IconButton(
-        ft.icons.ARROW_BACK_IOS_NEW_ROUNDED,
+        ft.Icons.ARROW_BACK_IOS_NEW_ROUNDED,
         on_click=lambda e: handle_date_change(rewind_day),
         tooltip="Dia Anterior"
     )
     next_day_button = ft.IconButton(
-        ft.icons.ARROW_FORWARD_IOS_ROUNDED,
+        ft.Icons.ARROW_FORWARD_IOS_ROUNDED,
         on_click=lambda e: handle_date_change(advance_day),
         tooltip="Próximo Dia"
     )
     reset_day_button = ft.TextButton(
         content=ft.Row(
-            [ft.Icon(ft.icons.TODAY_ROUNDED, color=ft.colors.PRIMARY), ft.Text("Hoje", color=ft.colors.PRIMARY, weight=ft.FontWeight.W_500)],
+            [ft.Icon(ft.Icons.TODAY_ROUNDED, color=ft.Colors.PRIMARY), ft.Text("Hoje", color=ft.Colors.PRIMARY, weight=ft.FontWeight.W_500)],
             alignment=ft.MainAxisAlignment.CENTER,
             spacing=5,
         ),
@@ -170,17 +170,17 @@ def main(page: ft.Page):
         on_change=on_field_change,
         border_radius=20,
         filled=True,
-        border_color=ft.colors.TRANSPARENT,
-        focused_border_color=ft.colors.PRIMARY,
+        border_color=ft.Colors.TRANSPARENT,
+        focused_border_color=ft.Colors.PRIMARY,
         dense=True,
         content_padding=ft.padding.symmetric(horizontal=15, vertical=10)
     )
     add_button = ft.IconButton(
-        icon=ft.icons.ADD_CIRCLE_OUTLINE, 
+        icon=ft.Icons.ADD_CIRCLE_OUTLINE, 
         on_click=add_habit_click, 
         tooltip="Adicionar Hábito",
         icon_size=28,
-        icon_color=ft.colors.PRIMARY
+        icon_color=ft.Colors.PRIMARY
     )
     
     habits_view_title = ft.Text(
@@ -188,7 +188,7 @@ def main(page: ft.Page):
         size=18, 
         weight=ft.FontWeight.BOLD, 
         text_align=ft.TextAlign.CENTER,
-        color=ft.colors.PRIMARY
+        color=ft.Colors.PRIMARY
     )
     habits_view = ft.ListView(
         expand=True, 
@@ -200,7 +200,7 @@ def main(page: ft.Page):
         "Nenhum hábito ainda. Adicione um novo!", 
         italic=True, 
         text_align=ft.TextAlign.CENTER, 
-        color=ft.colors.OUTLINE,
+        color=ft.Colors.OUTLINE,
         visible=False 
     )
 
