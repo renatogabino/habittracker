@@ -1,6 +1,13 @@
 from datetime import date, timedelta
 
-_current_app_date = date.today()
+# Função que retorna a data real.
+def _get_real_today():
+    return date.today()
+
+# Por padrão, a função que define "hoje" é a que retorna a data real.
+# Os testes poderão substituir esta função.
+_today_func = _get_real_today
+_current_app_date = _today_func()
 
 def get_current_app_date() -> date:
     """Retorna a data atualmente configurada para o aplicativo."""
@@ -10,19 +17,21 @@ def get_current_app_date() -> date:
 def set_current_app_date(new_date: date):
     """Define manualmente a data do aplicativo, não permitindo datas futuras."""
     global _current_app_date
-    if new_date > date.today():
-        _current_app_date = date.today()
+    today = _today_func() # Usa a função controlável
+    if new_date > today:
+        _current_app_date = today
     else:
         _current_app_date = new_date
 
 def advance_day():
     """Avança a data do aplicativo em um dia, se não ultrapassar o dia de hoje."""
     global _current_app_date
-    if _current_app_date < date.today():
+    today = _today_func() # Usa a função controlável
+    if _current_app_date < today:
         _current_app_date += timedelta(days=1)
     # Garante que, mesmo que algo dê errado, não passe de hoje
-    elif _current_app_date > date.today():
-         _current_app_date = date.today()
+    elif _current_app_date > today:
+         _current_app_date = today
 
 
 def rewind_day():
@@ -34,4 +43,4 @@ def rewind_day():
 def reset_to_today():
     """Reseta a data do aplicativo para o dia atual real."""
     global _current_app_date
-    _current_app_date = date.today()
+    _current_app_date = _today_func() # Usa a função controlável
